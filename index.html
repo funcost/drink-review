@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Drink Review</title>
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+  <div class="card">
+
+    <h1>🍹 Drink Review</h1>
+
+    <p class="sub">
+      Cho tụi mình xin ý kiến nha 😭
+    </p>
+
+    <form id="reviewForm">
+
+      <label>Độ ngọt thế nào?</label>
+
+      <select name="sweetness" required>
+
+        <option value="" disabled selected>
+          -- Chọn độ ngọt --
+        </option>
+
+        <option>Nhạt</option>
+        <option>Hài hòa</option>
+        <option>Khá ngọt</option>
+        <option>Tiểu đường 😄</option>
+
+      </select>
+      <label>Giá thành?</label>
+
+      <select name="price" required>
+
+        <option value="" disabled selected>
+          -- Chọn giá thành --
+        </option>
+
+        <option>Rẻ</option>
+        <option>Hợp lý</option>
+        <option>Đắt</option>
+
+      </select>
+
+      <label>Đánh giá chất lượng</label>
+
+      <select name="rating" required>
+
+        <option value="" disabled selected>
+          -- Chọn số sao --
+        </option>
+
+        <option>⭐</option>
+        <option>⭐⭐</option>
+        <option>⭐⭐⭐</option>
+        <option>⭐⭐⭐⭐</option>
+        <option>⭐⭐⭐⭐⭐</option>
+
+      </select>
+
+      <label>Ý kiến thêm</label>
+
+      <textarea
+        name="message"
+        placeholder="Nhập góp ý..."
+      ></textarea>
+
+      <button type="submit"
+              id="submitBtn">
+
+        Gửi đánh giá
+
+      </button>
+
+    </form>
+
+    <div id="status"></div>
+
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
