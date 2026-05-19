@@ -20,6 +20,119 @@ document.getElementById("locationBtn");
 const locationInput =
 document.getElementById("location");
 
+const drinkSelect =
+document.getElementById("drink");
+
+const quantityInput =
+document.getElementById("quantity");
+
+const distanceText =
+document.getElementById("distanceText");
+
+const drinkPriceText =
+document.getElementById("drinkPrice");
+
+const shipPriceText =
+document.getElementById("shipPrice");
+
+const totalPriceText =
+document.getElementById("totalPrice");
+
+const SHOP_LAT = 18.5849801;
+
+const SHOP_LNG = 105.6226719;
+
+let currentDistance = 0;
+
+function calculateDistance(
+  lat1,
+  lon1,
+  lat2,
+  lon2
+){
+
+  const R = 6371;
+
+  const dLat =
+  (lat2-lat1) * Math.PI/180;
+
+  const dLon =
+  (lon2-lon1) * Math.PI/180;
+
+  const a =
+
+    Math.sin(dLat/2) *
+    Math.sin(dLat/2)
+
+    +
+
+    Math.cos(lat1*Math.PI/180) *
+    Math.cos(lat2*Math.PI/180)
+
+    *
+
+    Math.sin(dLon/2) *
+    Math.sin(dLon/2);
+
+  const c =
+  2 * Math.atan2(
+    Math.sqrt(a),
+    Math.sqrt(1-a)
+  );
+
+  return R*c;
+
+}
+
+function updatePrice(){
+
+  let drinkPrice = 0;
+
+  const drink =
+  drinkSelect.value;
+
+  const quantity =
+  Number(quantityInput.value);
+
+  if(drink === "Trà tắc"){
+
+    drinkPrice = 10000;
+
+  }
+
+  else if(
+    drink === "Chanh giã tay"
+  ){
+
+    drinkPrice = 14000;
+
+  }
+
+  const drinkTotal =
+  drinkPrice * quantity;
+
+  const ship =
+  Math.round(
+    currentDistance * 2500
+  );
+
+  const total =
+  drinkTotal + ship;
+
+  distanceText.innerHTML =
+  `Khoảng cách: ${currentDistance.toFixed(1)} km`;
+
+  drinkPriceText.innerHTML =
+  `Tiền nước: ${drinkTotal.toLocaleString()}đ`;
+
+  shipPriceText.innerHTML =
+  `Ship: ${ship.toLocaleString()}đ`;
+
+  totalPriceText.innerHTML =
+  `Tổng: ${total.toLocaleString()}đ`;
+
+}
+
 locationBtn.addEventListener(
   "click",
   () => {
@@ -41,6 +154,17 @@ locationBtn.addEventListener(
 
           locationInput.value =
           mapLink;
+          currentDistance =
+          calculateDistance(
+
+            SHOP_LAT,
+            SHOP_LNG,
+            lat,
+            lng
+
+          );
+
+          updatePrice();
 
         },
 
@@ -153,3 +277,14 @@ form.addEventListener(
     "Đặt hàng";
 
 });
+drinkSelect.addEventListener(
+  "change",
+  updatePrice
+);
+
+quantityInput.addEventListener(
+  "input",
+  updatePrice
+);
+
+updatePrice();

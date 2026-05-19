@@ -231,3 +231,30 @@ button:hover{
 
   transform:scale(1.03);
 }
+.price-box{
+
+  margin-top:20px;
+
+  padding:20px;
+
+  border-radius:20px;
+
+  background:#f5f5f5;
+
+}
+
+.price-box p{
+
+  font-size:18px;
+
+  margin:8px 0;
+
+}
+
+.price-box h2{
+
+  margin-top:15px;
+
+  font-size:32px;
+
+}
